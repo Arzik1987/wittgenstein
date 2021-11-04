@@ -188,11 +188,11 @@ class BinTransformer:
             for i, char in enumerate(value):
                 # Found a possible split and it's not the first number's minus sign
                 if char == "-" and i != 0:
-                    if split_idx is not None and not split_idx:
+                    if value[i-1] != 'e' and not split_idx:
                         split_idx = i
                     # Found a - after the split, and it's not the minus of a negative number
-                    elif i > split_idx + 1:
-                        return None
+                    # elif i > split_idx + 1:
+                    #     return None
             floor = value[:split_idx]
             ceil = value[split_idx + 1 :]
         return float(floor), float(ceil)
